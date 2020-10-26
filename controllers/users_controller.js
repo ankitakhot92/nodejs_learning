@@ -1,37 +1,11 @@
-const cookieParser = require('cookie-parser');
 const User = require('../models/users');
 
 module.exports.profile = function(req, res){
     // return res.end('<h1>Users Profile</>');
 
-    // return res.render('profile', {
-    //     title: "profile",
-    //     name: req.cookies.name,
-    //     email: req.cookies.email
-    // });
-
-    //profile page must appear only after sign-in
-
-    //check if user_id is present in cookie
-    if(req.cookies.user_id){
-        //check if user exist for this user_id
-        User.findById(req.cookies.user_id, function(err, user){
-            // if(err){
-            //     console.log("error while finding the user");
-            //     return;
-            // }
-            if(user){
-                return res.render('profile', {
-                    title: "user profile",
-                    user: user
-                });
-            }else{
-                return res.redirect('/users/sign-in');
-            }
-        })
-    }else{
-        return res.redirect('/users/sign-in');
-    }
+    return res.render('profile', {
+        title: "profile"
+    });
 };
 
 //render the sign up page 
@@ -78,34 +52,5 @@ module.exports.create = function(req, res){
 
 //sign in and create a session for user
 module.exports.createSession = function(req, res){
-    
-    //check if user exist
-    User.findOne({email: req.body.email}, function(err, user){
-        
-        if(err){
-            console.log("error in signing in the user");
-            return;
-        }
-        //if user doesn't exit
-        if(!user){
-            return res.redirect('back');
-        }else{
-            //check if password is correct
-            if(user.password != req.body.password){
-                return res.redirect('back');
-            }
-            //create a session
-            res.cookie('user_id', user.id);
-            res.cookie('name', user.name);
-            res.cookie('email', user.email);
-            return res.redirect('/users/profile');
-        }
-
-    });
-};
-
-//sign out - clear cookie and redirect to sign in page
-module.exports.singOut = function(req, res){
-    res.clearCookie('user_id');
-    return res.redirect('/users/sign-in');
+    //TODO later
 };
