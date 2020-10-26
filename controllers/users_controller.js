@@ -96,8 +96,8 @@ module.exports.createSession = function(req, res){
             }
             //create a session
             res.cookie('user_id', user.id);
-            res.cookie('name', user.name);
-            res.cookie('email', user.email);
+            // res.cookie('name', user.name);
+            // res.cookie('email', user.email);
             return res.redirect('/users/profile');
         }
 
