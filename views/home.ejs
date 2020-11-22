@@ -14,12 +14,13 @@
         </h1>
         <section id="feed-posts">
             <h4>Posts</h4>
+            <% if(locals.user) { %> 
             <form action="/posts/create" id="new-post-form" method="POST">
                 <!-- will take one field content -->
                 <textarea name="content" cols="30" rows="3" placeholder="type here.."></textarea>
                 <input type="submit" value="Post">
             </form>
-            
+            <% } %>
             <!-- after this add a controller to get data from views and add it to db schema. and then have a route to map the post action -->
 
             <div id="posts-list-container">
