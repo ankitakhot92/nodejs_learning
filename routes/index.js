@@ -12,6 +12,8 @@ router.use('/users', require('./users.js'));
 
 // router.post('/createuser', signupController.createuser);
 
+router.use('/posts', require('./posts.js'));    //after this we need to put this route in the actions of form
+
 console.log("Router loaded");
 
 module.exports = router;
