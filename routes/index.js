@@ -14,6 +14,8 @@ router.use('/users', require('./users.js'));
 
 router.use('/posts', require('./posts.js'));    //after this we need to put this route in the actions of form
 
+router.use('/comments', require('./comments'));
+
 console.log("Router loaded");
 
 module.exports = router;

@@ -8,7 +8,14 @@ const postSchema = new mongoose.Schema({
     user: {                                                       //to link it with user
         type: mongoose.Schema.Types.ObjectId,                     //we link it with users schema
         refer: 'User'                                             //referring to users schema
-    }
+    },
+    // include the array of ids of all comments in this post schema itself
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            refer: 'Comment'
+        }
+    ]
 },{
     timestamps: true                                              //timestamps auto introduces 2 fields createdAt and updateAt
 });
